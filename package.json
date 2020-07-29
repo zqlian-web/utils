@@ -1,0 +1,20 @@
+{
+  "name": "@zqlian/utils",
+  "version": "0.1.0",
+  "description": "zqlian utils",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zqlian-web/utils.git"
+  },
+  "keywords": [
+    "zqlian",
+    "cli"
+  ],
+  "author": "zqlian.wuyun",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/zqlian-web/utils/issues"
+  },
+  "homepage": "https://github.com/zqlian-web/utils#readme"
+}
