@@ -1,6 +1,6 @@
 {
   "name": "@zqlianweb/utils",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "description": "zqlian utils",
   "main": "index.js",
   "repository": {
