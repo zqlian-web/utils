@@ -2,8 +2,13 @@ const utilsString = require('./string')
 const utilsArray = require('./array')
 const inquirer = require('inquirer')
 module.exports = {
-  async getParams (useParams, paramsString) {
-    let params = utilsString.getParams(paramsString)
+  /**
+   * 获取需要的参数
+   * @param useParams
+   * @param params
+   * @returns {Promise<{}>}
+   */
+  async getParams (useParams, params = {}) {
     let prompts = []
     Object.keys(useParams).forEach(key => {
       let value = params[key]
@@ -25,6 +30,11 @@ module.exports = {
     })
     return params
   },
+  /**
+   * 单个操作提示
+   * @param prompt
+   * @returns {Promise<*>}
+   */
   async getOnePrompt (prompt) {
     let data = await new Promise(rev => {
       inquirer.prompt(prompt).then(rev)

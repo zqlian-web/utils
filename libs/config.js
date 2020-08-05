@@ -37,7 +37,7 @@ module.exports = {
   read (key) {
     this.init()
     let configPath = this.getPath()
-    let data = fs.readFileSync(configPath)
+    let data = fs.readFileSync(configPath) || '{}'
     try {
       data = JSON.parse(data)
     } catch (e) {}

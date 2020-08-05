@@ -1,4 +1,9 @@
 module.exports = {
+  /**
+   * url参数拆分
+   * @param text
+   * @returns {{}}
+   */
   getParams (text) {
     let obj = {}
     if (!text) return obj
