@@ -1,9 +1,10 @@
 let path = require('path')
 let fs = require('fs')
-let file = require('./file')
+let libsFile = require('./file')
+let libsObject = require('./object')
 module.exports = {
   getPath () {
-    return path.join(file.getRootPath(), './.zqlianrc')
+    return libsFile.getResolvePath('./.zqlianrc')
   },
   init () {
     let configPath = this.getPath()
@@ -14,7 +15,7 @@ module.exports = {
   merge (key, data = {}) {
     let configPath = this.getPath()
     let config = this.read()
-    config[key] = Object.assign(config[key], data)
+    config[key] = libsObject.merge(config[key] || {}, data)
     this.write(null, config, configPath)
   },
   write (key, data, path) {

@@ -9,12 +9,26 @@ module.exports = {
     return process.cwd()
   },
   /**
+   * 获取对应的绝对路径
+   * @returns {*}
+   */
+  getResolvePath (usePath) {
+    return path.join(this.getRootPath(), usePath)
+  },
+  /**
+   * 获取package.json 内容
+   * @returns {any}
+   */
+  getPkg () {
+    return require(this.getResolvePath('./package.json'))
+  },
+  /**
    * 拷贝目录
    * @param from
    * @param to
    * @param options
    */
-  copyDir (from, to, options) {
+  copyDir (from, to, options = {}) {
     let files = fs.readdirSync(from)
     files.forEach(file => {
       let fromPath = path.join(from, file)
@@ -28,7 +42,10 @@ module.exports = {
       let fileStat = fs.statSync(fromPath)
       let toPath = path.join(to, file)
       if (fileStat.isDirectory()) {
-        return this.copyDir(fromPath, toPath)
+        return this.copyDir(fromPath, toPath, options)
+      }
+      if (options.formatToPath) {
+        toPath = options.formatToPath(toPath)
       }
       this.copy(fromPath, toPath)
     })
@@ -63,8 +80,8 @@ module.exports = {
    * @param options
    */
   write (path, data, options) {
-    this.makeDir(path, 1)
-    if (typeof data === 'string') {
+    this.mkdir(path, 1)
+    if (typeof data !== 'string') {
       data = JSON.stringify(data)
     }
     fs.writeFileSync(path, data, options)

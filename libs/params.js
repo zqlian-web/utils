@@ -19,7 +19,7 @@ module.exports = {
           value = ''
         }
       }
-      if (!value) {
+      if (value == null) {
         config.name = config.name || key
         prompts.push(config)
       }
